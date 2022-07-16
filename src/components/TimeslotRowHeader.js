@@ -9,7 +9,7 @@ const TimeslotRowHeader = (props) => {
       <div className={"dayHeader"}>&nbsp;</div>
       { headerNames.map((timeslot, num) => {
         return (
-          <div className={"timeslotRowHeader"}>
+          <div key={num} className={"timeslotRowHeader"}>
             {headerNames[num]}
           </div>
         )
