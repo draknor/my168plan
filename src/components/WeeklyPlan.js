@@ -1,6 +1,8 @@
 import Day from './Day';
 import Timeslot, {getTimeslots} from './Timeslot';
 import TimeslotRowHeader from "./TimeslotRowHeader";
+import Grid from "@mui/material/Grid";
+import TagMenu from "./TagMenu";
 
 const WeeklyPlan = () => {
   const days = [
@@ -22,19 +24,24 @@ const WeeklyPlan = () => {
 
   return (
     <div className={"weeklyPlan"}>
-      <TimeslotRowHeader
-        timeslots={days[0].timeslots}
-      />
-
-      { days.map((day, dayNum) => {
-        return (
-          <Day
-            key={dayNum}
-            day={day}
-            onClick={handleClick}
+      <Grid container spacing={0.5} columns={8}>
+        <Grid item xs={1} >
+          <TimeslotRowHeader
+            timeslots={days[0].timeslots}
           />
-        )
-      })}
+        </Grid>
+        { days.map((day, dayNum) => {
+          return (
+            <Grid item xs={1}>
+              <Day
+                key={dayNum}
+                day={day}
+                onClick={handleClick}
+              />
+            </Grid>
+          )
+        })}
+      </Grid>
     </div>
   );
 }

@@ -1,4 +1,7 @@
 import Tag from './Tag';
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box"
+import List from "@mui/material/List";
 
 const TagCollection = () => {
   const tags = [
@@ -10,17 +13,18 @@ const TagCollection = () => {
   ];
 
   return (
-    <div className="tagCollection">
-      <h3>Tags</h3>
-      <ul>
+    <Box sx={{ width: '100%', maxWidth: 300, bgcolor: 'background.paper'}}>
+      <Typography variant="h4" gutterBottom>
+        Tags
+      </Typography>
+      <List>
         { tags.map((tag) => {
           return (
             <Tag key={tag.id} tag={tag}/>
           )
         })}
-      </ul>
-    </div>
-
+      </List>
+    </Box>
   );
 }
 

@@ -7,21 +7,14 @@ import ProTip from './components/ProTip';
 import Footer from './components/Footer';
 import TagCollection from "./components/TagCollection";
 import WeeklyPlan from "./components/WeeklyPlan";
+import Header from "./components/Header";
 
 
 
 const App = () => {
   return (
     <Container maxWidth={"lg"}>
-      <Box sx={{ my: 4 }}>
-        <Typography variant="h4" component="h1" gutterBottom>
-          Create React App example
-        </Typography>
-        <ProTip />
-      </Box>
-      <div className={"App-header"}>
-        <h3>My168Planner</h3>
-      </div>
+      <Header />
       <TagCollection />
       <WeeklyPlan />
       <Footer />

@@ -1,10 +1,14 @@
+import {ListItem, ListItemButton, ListItemText} from "@mui/material";
+
 const Tag = (props) => {
   const tag = props.tag;
 
   return (
-    <li className={"tag"}>
-      <span>{tag.name}</span>
-    </li>
+    <ListItem>
+      <ListItemButton>
+        <ListItemText primary={tag.name} />
+      </ListItemButton>
+    </ListItem>
   )
 }
 export default Tag;

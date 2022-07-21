@@ -1,5 +1,4 @@
 
-
 const Timeslot = (props) => {
   const timeslot = props.timeslot;
   const onClick = props.onClick;
