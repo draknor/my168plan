@@ -14,8 +14,8 @@ const TimeslotRowHeader = (props) => {
         </Typography>
         { headerNames.map((timeslot, num) => {
           return (
-            <Grid item xs={1}>
-              <div key={num} className={"timeslotRowHeader"}>
+            <Grid item xs={1} key={num}>
+              <div className={"timeslotRowHeader"}>
               {headerNames[num]}
               </div>
             </Grid>

@@ -3,6 +3,7 @@ import Timeslot, {getTimeslots} from './Timeslot';
 import TimeslotRowHeader from "./TimeslotRowHeader";
 import Grid from "@mui/material/Grid";
 import TagMenu from "./TagMenu";
+import {TagArray} from "./TagCollection";
 
 const WeeklyPlan = () => {
   const days = [
@@ -14,6 +15,8 @@ const WeeklyPlan = () => {
     { id: 5, name: 'Friday', timeslots: getTimeslots(5) },
     { id: 6, name: 'Saturday', timeslots: getTimeslots(6) },
   ];
+
+  const tags = TagArray();
 
   const handleClick = (e) => {
     let content = e.target.innerHTML;
@@ -32,10 +35,10 @@ const WeeklyPlan = () => {
         </Grid>
         { days.map((day, dayNum) => {
           return (
-            <Grid item xs={1}>
+            <Grid item xs={1} key={dayNum}>
               <Day
-                key={dayNum}
                 day={day}
+                tags={tags}
                 onClick={handleClick}
               />
             </Grid>

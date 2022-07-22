@@ -1,11 +1,13 @@
+import TagMenu from "./TagMenu";
 
 const Timeslot = (props) => {
   const timeslot = props.timeslot;
   const onClick = props.onClick;
-
+  const tags = props.tags;
   return (
+
     <div className={"timeslot"} onClick={onClick} id={timeslot.id}>
-      {timeslot.name}
+      <TagMenu tags={tags} />
     </div>
 
   )

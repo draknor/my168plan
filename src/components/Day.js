@@ -6,6 +6,7 @@ const Day = (props) => {
   const day = props.day;
   const name = day.name;
   const timeslots = day.timeslots;
+  const tags = props.tags;
   const onClick = props.onClick;
 
   return (
@@ -17,10 +18,10 @@ const Day = (props) => {
       </Grid>
       { timeslots.map((timeslot, num) => {
         return (
-          <Grid item xs={1}>
+          <Grid item xs={1} key={num}>
             <Timeslot
-              key={num}
               timeslot={timeslot}
+              tags={tags}
               onClick={onClick}
             />
           </Grid>
