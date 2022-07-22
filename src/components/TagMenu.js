@@ -3,17 +3,22 @@ import {Button, Menu, MenuItem} from "@mui/material";
 import {KeyboardArrowDown} from "@mui/icons-material";
 
 const TagMenu = (props) => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [selectedTag, setSelectedTag] = React.useState(1);
-  const open = Boolean(anchorEl);
   const tags = props.tags;
+  const timeslotOnClick = props.onClick;
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [selectedTag, setSelectedTag] = React.useState(tags.find(tag => {return tag.id === props.selectedTagId}) || {});
+  const open = Boolean(anchorEl);
 
   const handleTimeslotClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleMenuItemClick = (event, tag) => {
-    setSelectedTag(tag);
+  const handleMenuItemClick = (event, newTag) => {
+    if (newTag && newTag !== selectedTag) {
+      const oldTag = selectedTag;
+      setSelectedTag(newTag);
+      timeslotOnClick(event, newTag, oldTag);
+    }
     setAnchorEl(null);
   }
 

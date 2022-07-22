@@ -1,27 +1,52 @@
+import * as React from 'react';
 import Day from './Day';
-import Timeslot, {getTimeslots} from './Timeslot';
+import {getTimeslots} from './Timeslot';
 import TimeslotRowHeader from "./TimeslotRowHeader";
 import Grid from "@mui/material/Grid";
 
+// This will eventually be replaced with a function/component to retrieve the plan from a user/data store
+const PlanArray = () => {
+  let plan = Array(7);
+  for (let weekday=0; weekday<plan.length; weekday++) {
+    let timeslots = getTimeslots(weekday);
+    plan[weekday] = Array(timeslots.length);
+    timeslots.map((timeslot, index) => {
+      plan[weekday][index] = timeslot.tagId || null
+      return null;
+    })
+  }
+
+  return plan;
+}
 
 const WeeklyPlan = (props) => {
+  const [planArray, setPlanArray] = React.useState(PlanArray());
   const tags=props.tags;
-  const days = [
-    { id: 0, name: 'Sunday', timeslots: getTimeslots(0) },
-    { id: 1, name: 'Monday', timeslots: getTimeslots(1) },
-    { id: 2, name: 'Tuesday', timeslots: getTimeslots(2) },
-    { id: 3, name: 'Wednesday', timeslots: getTimeslots(3) },
-    { id: 4, name: 'Thursday', timeslots: getTimeslots(4) },
-    { id: 5, name: 'Friday', timeslots: getTimeslots(5) },
-    { id: 6, name: 'Saturday', timeslots: getTimeslots(6) },
-  ];
+  const setTags = props.setTags;
 
+  const handleClick = (e, newTag, oldTag, timeslotIndex, weekday) => {
+    // console.log(`WeeklyPlan.handleClick[e.target] = ${e.target}`);
+    // console.log(`WeeklyPlan.handleClick[weekday,timeslotIndex]=(${weekday},${timeslotIndex})`);
+    // console.log('WeeklyPlan.handleClick[newTag]', newTag);
+    // console.log('WeeklyPlan.handleClick[oldTag]', oldTag);
 
-  const handleClick = (e) => {
-    let content = e.target.innerHTML;
-    e.target.innerHTML = content ? '' : e.target.id
+    if (newTag.id !== oldTag.id) {
+      // Update the plan
+      let newPlan = planArray.slice();
+      newPlan[weekday][timeslotIndex] = newTag.id || null;
+      setPlanArray(newPlan);
 
-    // console.log(e.target);
+      // Then update the tag counts
+      const updatedTags = tags.map(tag => {
+        // console.log('map(tag)-before',tag);
+        if (oldTag && tag.id === oldTag.id) { return {...tag, count: --tag.count}; }
+        if (newTag && tag.id === newTag.id) { return {...tag, count: ++tag.count}; }
+        // console.log('map(tag)-after',tag);
+        return tag;
+      })
+      // console.log('WeeklyPlan.handleClick[updatedTags]', updatedTags);
+      setTags(updatedTags);
+    }
   }
 
   return (
@@ -29,14 +54,15 @@ const WeeklyPlan = (props) => {
       <Grid container spacing={0.5} columns={8}>
         <Grid item xs={1} >
           <TimeslotRowHeader
-            timeslots={days[0].timeslots}
+            timeslots={planArray[0]}
           />
         </Grid>
-        { days.map((day, dayNum) => {
+        { planArray.map((dayArray, weekday) => {
           return (
-            <Grid item xs={1} key={dayNum}>
+            <Grid item xs={1} key={weekday}>
               <Day
-                day={day}
+                dayArray={dayArray}
+                weekday={weekday}
                 tags={tags}
                 onClick={handleClick}
               />

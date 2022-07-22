@@ -1,17 +1,20 @@
 import TagMenu from "./TagMenu";
 
 const Timeslot = (props) => {
-  const timeslot = props.timeslot;
-  const onClick = props.onClick;
+  const tagId = props.tagId;
+  const timeslotIndex = props.timeslotIndex;
+  const dayOnClick = props.onClick;
   const tags = props.tags;
+
+  const handleClick = (event, newTag, oldTag) => {
+    dayOnClick(event, newTag, oldTag, timeslotIndex);
+  }
+
   return (
-
-    <div className={"timeslot"} onClick={onClick} id={timeslot.id}>
-      <TagMenu tags={tags} />
+    <div className={"timeslot"}>
+      <TagMenu tags={tags} selectedTagId={tagId} onClick={handleClick}/>
     </div>
-
   )
-
 }
 
 export default Timeslot;
@@ -21,16 +24,15 @@ export const getTimeslots = (weekday) => {
   for (let i=0 ; i<24 ; i++) {
     timeslots[i] = {
       id:  `(${weekday},${i})`,
-      name: `(${weekday},${i})`
+      name: `(${weekday},${i})`,
+      tagId: null
     }
   }
   return timeslots;
 }
 
 export const getTimeslotNameCollection = (timeslots) => {
-  let timeslotCollection = timeslots.map((timeslot, num) => { return getTimeslotName(num); })
-
-  return timeslotCollection;
+  return ( timeslots.map((timeslot, num) => { return getTimeslotName(num); }) );
 }
 
 export const getTimeslotName = (timeslotNum) => {

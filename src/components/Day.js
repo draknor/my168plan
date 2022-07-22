@@ -3,26 +3,31 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 
 const Day = (props) => {
-  const day = props.day;
-  const name = day.name;
-  const timeslots = day.timeslots;
+  const timeslots = props.dayArray;
+  const weekday = props.weekday;
   const tags = props.tags;
-  const onClick = props.onClick;
+  const planOnClick = props.onClick;
+
+  const handleClick = (event, newTag, oldTag, timeslotIndex) => {
+    planOnClick(event, newTag, oldTag, timeslotIndex, weekday);
+  }
 
   return (
     <div className={"day"}>
       <Grid container spacing={0} columns={1}>
         <Typography variant="h6" gutterBottom>
-          {name}
+          {getDayName(weekday)}
         </Typography>
       </Grid>
-      { timeslots.map((timeslot, num) => {
+      { timeslots.map((tagId, num) => {
         return (
           <Grid item xs={1} key={num}>
             <Timeslot
-              timeslot={timeslot}
+              tagId={tagId}
+              weekday={weekday}
+              timeslotIndex={num}
               tags={tags}
-              onClick={onClick}
+              onClick={handleClick}
             />
           </Grid>
         )
@@ -35,3 +40,9 @@ const Day = (props) => {
 }
 
 export default Day;
+
+export const getDayName = (weekday) => {
+  const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday' ];
+  return (weekday >= 0 && weekday < dayNames.length) ? dayNames[weekday] : null
+
+}
