@@ -1,26 +1,11 @@
 import * as React from 'react';
 import Day from './Day';
-import {getTimeslots} from './Timeslot';
 import TimeslotRowHeader from "./TimeslotRowHeader";
 import Grid from "@mui/material/Grid";
 
-// This will eventually be replaced with a function/component to retrieve the plan from a user/data store
-const PlanArray = () => {
-  let plan = Array(7);
-  for (let weekday=0; weekday<plan.length; weekday++) {
-    let timeslots = getTimeslots(weekday);
-    plan[weekday] = Array(timeslots.length);
-    timeslots.map((timeslot, index) => {
-      plan[weekday][index] = timeslot.tagId || null
-      return null;
-    })
-  }
-
-  return plan;
-}
-
 const WeeklyPlan = (props) => {
-  const [planArray, setPlanArray] = React.useState(PlanArray());
+  const planArray=props.planArray;
+  const setPlanArray=props.setPlanArray;
   const tags=props.tags;
   const setTags = props.setTags;
 
