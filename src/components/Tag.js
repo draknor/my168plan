@@ -6,7 +6,7 @@ const Tag = (props) => {
   return (
     <ListItem>
       <ListItemButton>
-        <ListItemText primary={tag.name} />
+        <ListItemText primary={tag.name} secondary={`Count: ${tag.count}`} />
       </ListItemButton>
     </ListItem>
   )

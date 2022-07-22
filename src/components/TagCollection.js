@@ -3,8 +3,8 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box"
 import List from "@mui/material/List";
 
-const TagCollection = () => {
-  const tags = TagArray();
+const TagCollection = (props) => {
+  const tags = props.tags
 
   return (
     <Box sx={{ width: '100%', maxWidth: 300, bgcolor: 'background.paper'}}>
@@ -23,15 +23,3 @@ const TagCollection = () => {
 }
 
 export default TagCollection;
-
-export const TagArray = () => {
-  const tags = [
-    { id: 1, name: "Sleep" },
-    { id: 2, name: "Eat" },
-    { id: 3, name: "Family Time" },
-    { id: 4, name: "Work" },
-    { id: 5, name: "Recreation" },
-  ];
-
-  return tags;
-}

@@ -2,10 +2,10 @@ import Day from './Day';
 import Timeslot, {getTimeslots} from './Timeslot';
 import TimeslotRowHeader from "./TimeslotRowHeader";
 import Grid from "@mui/material/Grid";
-import TagMenu from "./TagMenu";
-import {TagArray} from "./TagCollection";
 
-const WeeklyPlan = () => {
+
+const WeeklyPlan = (props) => {
+  const tags=props.tags;
   const days = [
     { id: 0, name: 'Sunday', timeslots: getTimeslots(0) },
     { id: 1, name: 'Monday', timeslots: getTimeslots(1) },
@@ -16,7 +16,6 @@ const WeeklyPlan = () => {
     { id: 6, name: 'Saturday', timeslots: getTimeslots(6) },
   ];
 
-  const tags = TagArray();
 
   const handleClick = (e) => {
     let content = e.target.innerHTML;
