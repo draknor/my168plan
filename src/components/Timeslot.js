@@ -1,7 +1,7 @@
 import TagMenu from "./TagMenu";
 
 const Timeslot = (props) => {
-  const tagId = props.tagId;
+  const selectedTag = props.selectedTag;
   const timeslotIndex = props.timeslotIndex;
   const dayOnClick = props.onClick;
   const tags = props.tags;
@@ -12,7 +12,7 @@ const Timeslot = (props) => {
 
   return (
     <div className={"timeslot"}>
-      <TagMenu tags={tags} selectedTagId={tagId} onClick={handleClick}/>
+      <TagMenu tags={tags} selectedTag={selectedTag} onClick={handleClick}/>
     </div>
   )
 }

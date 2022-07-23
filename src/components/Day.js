@@ -19,12 +19,11 @@ const Day = (props) => {
           {getDayName(weekday)}
         </Typography>
       </Grid>
-      { timeslots.map((tagId, num) => {
+      { timeslots.map((selectedTag, num) => {
         return (
           <Grid item xs={1} key={num}>
             <Timeslot
-              tagId={tagId}
-              weekday={weekday}
+              selectedTag={selectedTag}
               timeslotIndex={num}
               tags={tags}
               onClick={handleClick}

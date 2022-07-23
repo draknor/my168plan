@@ -15,10 +15,10 @@ const WeeklyPlan = (props) => {
     // console.log('WeeklyPlan.handleClick[newTag]', newTag);
     // console.log('WeeklyPlan.handleClick[oldTag]', oldTag);
 
-    if (newTag.id !== oldTag.id) {
+    if ( (newTag ? newTag.id : null) !== (oldTag ? oldTag.id : null) ) {
       // Update the plan
       let newPlan = planArray.slice();
-      newPlan[weekday][timeslotIndex] = newTag.id || null;
+      newPlan[weekday][timeslotIndex] = newTag;
       setPlanArray(newPlan);
 
       // Then update the tag counts

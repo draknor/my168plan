@@ -6,7 +6,7 @@ const TagMenu = (props) => {
   const tags = props.tags;
   const timeslotOnClick = props.onClick;
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [selectedTag, setSelectedTag] = React.useState(tags.find(tag => {return tag.id === props.selectedTagId}) || {});
+  const [selectedTag, setSelectedTag] = React.useState(props.selectedTag);
   const open = Boolean(anchorEl);
 
   const handleTimeslotClick = (event) => {
@@ -15,7 +15,7 @@ const TagMenu = (props) => {
 
   const handleMenuItemClick = (event, newTag) => {
     if (newTag && newTag !== selectedTag) {
-      const oldTag = selectedTag;
+      const oldTag = selectedTag || {};
       setSelectedTag(newTag);
       timeslotOnClick(event, newTag, oldTag);
     }
@@ -36,7 +36,7 @@ const TagMenu = (props) => {
         onClick={handleTimeslotClick}
         endIcon={<KeyboardArrowDown />}
       >
-        {selectedTag.name || '(blank)'}
+        {selectedTag ? selectedTag.name : '(blank)'}
       </Button>
       <Menu
         id={"basic-menu"}
