@@ -5,10 +5,9 @@ import {TagMenuItem} from "./Tag";
 
 const TagMenu = (props) => {
   const tags = props.tags;
+  const selectedTag=props.selectedTag
   const timeslotOnClick = props.onClick;
   const [anchorEl, setAnchorEl] = React.useState(null);
-  //const [selectedTag, setSelectedTag] = React.useState(props.selectedTag);
-  const selectedTag = props.selectedTag;
   const open = Boolean(anchorEl);
 
   const handleTimeslotClick = (event) => {
@@ -18,7 +17,6 @@ const TagMenu = (props) => {
   const handleMenuItemClick = (event, newTag) => {
     if (newTag && newTag !== selectedTag) {
       const oldTag = selectedTag || {};
-      //setSelectedTag(newTag);
       timeslotOnClick(event, newTag, oldTag);
     }
     setAnchorEl(null);

@@ -13,7 +13,7 @@ const WeeklyPlan = (props) => {
     // console.log(`WeeklyPlan.handleClick[e.target] = ${e.target}`);
     // console.log(`WeeklyPlan.handleClick[weekday,timeslotIndex]=(${weekday},${timeslotIndex})`);
     // console.log('WeeklyPlan.handleClick[newTag]', newTag);
-    // console.log('WeeklyPlan.handleClick[oldTag]', oldTag);
+    //console.log('WeeklyPlan.handleClick[oldTag]', oldTag);
 
     if ( (newTag ? newTag.id : null) !== (oldTag ? oldTag.id : null) ) {
       // Update the plan
@@ -42,11 +42,11 @@ const WeeklyPlan = (props) => {
             timeslots={planArray[0]}
           />
         </Grid>
-        { planArray.map((dayArray, weekday) => {
+        { planArray.map((e, weekday) => {
           return (
             <Grid item xs={1} key={weekday}>
               <Day
-                dayArray={dayArray}
+                planArray={planArray}
                 weekday={weekday}
                 tags={tags}
                 onClick={handleClick}
