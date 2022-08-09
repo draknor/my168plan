@@ -2,6 +2,8 @@ import Tag from './Tag';
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box"
 import List from "@mui/material/List";
+import Stack from "@mui/material/Stack";
+import {TagDisplay} from "./Tag";
 
 const TagCollection = (props) => {
   const tags = props.tags
@@ -11,13 +13,13 @@ const TagCollection = (props) => {
       <Typography variant="h4" gutterBottom>
         Tags
       </Typography>
-      <List>
+      <Stack direction={"row"} spacing={2}>
         { tags.map((tag) => {
           return (
-            <Tag key={tag.id} tag={tag}/>
+            <TagDisplay key={tag.id} tag={tag}/>
           )
         })}
-      </List>
+      </Stack>
     </Box>
   );
 }

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {Button, Menu, MenuItem} from "@mui/material";
 import {KeyboardArrowDown} from "@mui/icons-material";
+import {TagMenuItem} from "./Tag";
 
 const TagMenu = (props) => {
   const tags = props.tags;
@@ -36,6 +37,7 @@ const TagMenu = (props) => {
         onClick={handleTimeslotClick}
         endIcon={<KeyboardArrowDown />}
       >
+        {console.log(selectedTag)}
         {selectedTag ? selectedTag.name : '(blank)'}
       </Button>
       <Menu
@@ -57,13 +59,12 @@ const TagMenu = (props) => {
         }}
       >
         { tags.map((tag) => (
-          <MenuItem
+          <TagMenuItem
             key={tag.id}
+            tag={tag}
             selected={tag === selectedTag}
             onClick={(event) => handleMenuItemClick(event, tag)}
-          >
-            {tag.name}
-          </MenuItem>
+          />
         ))}
       </Menu>
     </div>

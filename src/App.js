@@ -62,8 +62,8 @@ const App = () => {
   }
 
   const handleClearClick = () => {
-    setTags(ResetTagArray());
     setPlanArray(ResetPlanArray()); //TODO this doesn't clear the TagMenu selected items - how to do that?!
+    setTags(ResetTagArray());
     removeCookie('tags');
     removeCookie('plan');
     setAlert({open: true, severity: 'warning', msg:'Deleted!'})
