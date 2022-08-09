@@ -27,7 +27,7 @@ const Timeslot = (props) => {
 export default Timeslot;
 
 export const getTimeslots = (weekday) => {
-  let timeslots = Array(1); // TODO reduce from 24 for dev efficiency
+  let timeslots = Array(24);
   for (let i=0 ; i<timeslots.length ; i++) {
     timeslots[i] = {
       id:  `(${weekday},${i})`,
