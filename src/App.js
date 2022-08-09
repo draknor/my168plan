@@ -40,7 +40,7 @@ const ResetPlanArray = () => {
 const App = () => {
   const [tags, setTags] = React.useState(ResetTagArray());
   const [planArray, setPlanArray] = React.useState(ResetPlanArray());
-  const [cookies, setCookie, removeCookie] = useCookies(['weeklyPlan'])
+  const [cookies, setCookie] = useCookies(['plan','tags'])
   const [alert, setAlert] = React.useState({open: false});
 
   const Alert = React.forwardRef(function Alert(props, ref) {
@@ -55,17 +55,14 @@ const App = () => {
   }
 
   const handleSaveClick = () => {
-    // console.log("handleSaveClick - TBD");
     setCookie('tags',tags);
     setCookie('plan',planArray);
     setAlert({open: true, severity: 'success', msg:'Saved!'})
   }
 
   const handleClearClick = () => {
-    setPlanArray(ResetPlanArray()); //TODO this doesn't clear the TagMenu selected items - how to do that?!
+    setPlanArray(ResetPlanArray());
     setTags(ResetTagArray());
-    removeCookie('tags');
-    removeCookie('plan');
     setAlert({open: true, severity: 'warning', msg:'Deleted!'})
   }
 
