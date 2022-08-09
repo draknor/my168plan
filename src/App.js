@@ -23,7 +23,7 @@ const ResetTagArray = () => {
 
 // This will eventually be replaced with a function/component to retrieve the plan from a user/data store
 const ResetPlanArray = () => {
-  let plan = Array(7);
+  let plan = Array(1); //TODO reduce from 7 for dev efficiency
   for (let weekday=0; weekday<plan.length; weekday++) {
     let timeslots = getTimeslots(weekday);
     plan[weekday] = Array(timeslots.length);
@@ -40,7 +40,7 @@ const ResetPlanArray = () => {
 const App = () => {
   const [tags, setTags] = React.useState(ResetTagArray());
   const [planArray, setPlanArray] = React.useState(ResetPlanArray());
-  const [cookies, setCookie, removeCookie] = useCookies(['weeklyPlan'])
+  const [cookies, setCookie, removeCookie] = useCookies(['plan','tags'])
   const [alert, setAlert] = React.useState({open: false});
 
   const Alert = React.forwardRef(function Alert(props, ref) {
@@ -62,10 +62,11 @@ const App = () => {
   }
 
   const handleClearClick = () => {
+    console.log("Clear button pressed!")
     setPlanArray(ResetPlanArray()); //TODO this doesn't clear the TagMenu selected items - how to do that?!
     setTags(ResetTagArray());
-    removeCookie('tags');
-    removeCookie('plan');
+    //removeCookie('tags');
+    //removeCookie('plan');
     setAlert({open: true, severity: 'warning', msg:'Deleted!'})
   }
 

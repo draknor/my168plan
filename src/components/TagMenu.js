@@ -1,13 +1,13 @@
 import * as React from 'react';
-import {Button, Menu, MenuItem} from "@mui/material";
+import {Button, Menu} from "@mui/material";
 import {KeyboardArrowDown} from "@mui/icons-material";
 import {TagMenuItem} from "./Tag";
 
 const TagMenu = (props) => {
   const tags = props.tags;
+  const selectedTag=props.selectedTag
   const timeslotOnClick = props.onClick;
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [selectedTag, setSelectedTag] = React.useState(props.selectedTag);
   const open = Boolean(anchorEl);
 
   const handleTimeslotClick = (event) => {
@@ -17,7 +17,6 @@ const TagMenu = (props) => {
   const handleMenuItemClick = (event, newTag) => {
     if (newTag && newTag !== selectedTag) {
       const oldTag = selectedTag || {};
-      setSelectedTag(newTag);
       timeslotOnClick(event, newTag, oldTag);
     }
     setAnchorEl(null);
@@ -27,6 +26,7 @@ const TagMenu = (props) => {
     setAnchorEl(null);
   };
 
+  console.log("TagMenu render");
   return (
     <div>
       <Button
@@ -37,8 +37,7 @@ const TagMenu = (props) => {
         onClick={handleTimeslotClick}
         endIcon={<KeyboardArrowDown />}
       >
-        {console.log(selectedTag)}
-        {selectedTag ? selectedTag.name : '(blank)'}
+        {selectedTag ? selectedTag.name : ''}
       </Button>
       <Menu
         id={"basic-menu"}

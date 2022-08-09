@@ -3,14 +3,11 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 
 const Day = (props) => {
-  const timeslots = props.dayArray;
+  const planArray = props.planArray
   const weekday = props.weekday;
+  const timeslots = planArray[weekday];
   const tags = props.tags;
-  const planOnClick = props.onClick;
-
-  const handleClick = (event, newTag, oldTag, timeslotIndex) => {
-    planOnClick(event, newTag, oldTag, timeslotIndex, weekday);
-  }
+  const handleClick = props.onClick;
 
   return (
     <div className={"day"}>
@@ -19,11 +16,12 @@ const Day = (props) => {
           {getDayName(weekday)}
         </Typography>
       </Grid>
-      { timeslots.map((selectedTag, num) => {
+      { timeslots.map((e, num) => {
         return (
           <Grid item xs={1} key={num}>
             <Timeslot
-              selectedTag={selectedTag}
+              planArray={planArray}
+              weekday={weekday}
               timeslotIndex={num}
               tags={tags}
               onClick={handleClick}
