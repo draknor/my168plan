@@ -1,4 +1,4 @@
-import Timeslot, { getTimeslotNameCollection } from './Timeslot';
+import { getTimeslotNameCollection } from './Timeslot';
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 
@@ -15,7 +15,7 @@ const TimeslotRowHeader = (props) => {
         { headerNames.map((timeslot, num) => {
           return (
             <Grid item xs={1} key={num}>
-              <div className={"timeslotRowHeader"}>
+              <div className={"timeslotRowHeader " + (num % 2 ? 'rowOdd' : 'rowEven') }>
               {headerNames[num]}
               </div>
             </Grid>

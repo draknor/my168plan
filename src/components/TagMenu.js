@@ -7,6 +7,7 @@ const TagMenu = (props) => {
   const tags = props.tags;
   const selectedTag=props.selectedTag
   const timeslotOnClick = props.onClick;
+  const id=props.id;
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
@@ -27,9 +28,9 @@ const TagMenu = (props) => {
   };
 
   return (
-    <div>
+    <div className={selectedTag ? selectedTag.colorClass : "tagColorNone"}>
       <Button
-        id={"basic-button"}
+        id={`basic-button-${id}`}
         aria-controls={open ? 'basic-menu' : undefined }
         aria-haspopup={"true"}
         aria-expanded={open ? 'true' : undefined}
@@ -39,7 +40,7 @@ const TagMenu = (props) => {
         {selectedTag ? selectedTag.name : '(blank)'}
       </Button>
       <Menu
-        id={"basic-menu"}
+        id={`basic-menu-${id}`}
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}

@@ -14,8 +14,8 @@ export const TagDisplay = (props) => {
   const tag = props.tag;
 
   return (
-    <ListItem>
-      <ListItemButton>
+    <ListItem className={tag.colorClass}>
+      <ListItemButton >
         <ListItemText primary={tag.name} secondary={`Count: ${tag.count}`} />
       </ListItemButton>
     </ListItem>

@@ -13,10 +13,11 @@ const Timeslot = (props) => {
   }
 
   return (
-    <div className={"timeslot"}>
+    <div className={"timeslot " + (timeslotIndex % 2 ? 'rowOdd' : 'rowEven')  }>
       <TagMenu
         tags={tags}
         selectedTag={selectedTag}
+        id={`(${weekday},${timeslotIndex})`}
         onClick={handleClick}/>
     </div>
   )

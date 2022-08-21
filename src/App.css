@@ -1,29 +1,44 @@
 .weeklyPlan {
   margin: auto;
-  border: dimgray 1px dashed;
+  border:  none; /* dimgray 1px dashed; */
   width: 1232px;
   height: 860px;
-  padding: 1px;
+  padding: 0;
 }
 
 .day, .timeslotRowsHeader {
-  border: darkred 1px solid;
+  border: none; /* darkred 1px solid; */
   width: 150px;
   height: 100%;
-  padding: 1px;
+  padding: 0;
   float: left;
 }
 
+.timeslotRowsHeader {
+  text-align: right;
+}
+
+
 .dayHeader {
   text-align: center;
-  height: 40px;
+  width: 100%;
+  height: 100%;
 }
 
 .timeslot, .timeslotRowHeader {
-  border: darkblue 1px solid;
-  width: 146px;
+  border: none;  /* darkblue 1px solid; */
+  width: 150px;
   height: 30px;
-  padding: 1px;
+  padding: 0;
+  vertical-align: center; /* TODO - how to vertically align? */
+}
+
+.rowOdd {
+  background-color: white;
+}
+
+.rowEven {
+  background-color: #dfdfdf;
 }
 
 .tag {
@@ -38,7 +53,32 @@
   max-width: 300px;
   list-style-type: none;
   float: left;
+  background-color: coral;
 
+}
+
+.tagColor1 {
+  background-color: palevioletred;
+}
+
+.tagColor2 {
+  background-color: lightgoldenrodyellow;
+}
+
+.tagColor3 {
+  background-color: palegreen;
+}
+
+.tagColor4 {
+  background-color: lightskyblue;
+}
+
+.tagColor5 {
+  background-color: mediumpurple;
+}
+
+.tagColorNone {
+  background-color: transparent;
 }
 
 .tag:hover,

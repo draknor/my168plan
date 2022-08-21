@@ -1,7 +1,5 @@
-import Tag from './Tag';
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box"
-import List from "@mui/material/List";
 import Stack from "@mui/material/Stack";
 import {TagDisplay} from "./Tag";
 

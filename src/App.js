@@ -13,11 +13,11 @@ import MuiAlert from "@mui/material/Alert";
 // This will eventually be replaced with a function/component to retrieve the tags from a user/data store
 const ResetTagArray = () => {
   return [
-    { id: 1, name: "Sleep", count: 0 },
-    { id: 2, name: "Eat", count: 0 },
-    { id: 3, name: "Family Time", count: 0 },
-    { id: 4, name: "Work", count: 0 },
-    { id: 5, name: "Recreation", count: 0 },
+    { id: 1, name: "Sleep", count: 0, colorClass: 'tagColor1' },
+    { id: 2, name: "Eat", count: 0, colorClass: 'tagColor2' },
+    { id: 3, name: "Family Time", count: 0, colorClass: 'tagColor3' },
+    { id: 4, name: "Work", count: 0, colorClass: 'tagColor4' },
+    { id: 5, name: "Recreation", count: 0, colorClass: 'tagColor5' },
   ];
 }
 

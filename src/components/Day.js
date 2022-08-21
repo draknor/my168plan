@@ -12,7 +12,7 @@ const Day = (props) => {
   return (
     <div className={"day"}>
       <Grid container spacing={0} columns={1}>
-        <Typography variant="h6" gutterBottom>
+        <Typography variant="h6" className={"dayHeader"} gutterBottom>
           {getDayName(weekday)}
         </Typography>
       </Grid>
