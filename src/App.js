@@ -2,7 +2,7 @@ import * as React from 'react';
 import './App.css';
 import Container from '@mui/material/Container';
 import Footer from './components/Footer';
-import TagCollection from "./components/TagCollection";
+import TagSummary from "./components/TagSummary";
 import WeeklyPlan from "./components/WeeklyPlan";
 import Header from "./components/Header";
 import {getTimeslots} from "./components/Timeslot";
@@ -75,7 +75,7 @@ const App = () => {
   return (
     <Container maxWidth={"lg"}>
       <Header saveOnClick={handleSaveClick} clearOnClick={handleClearClick} loadOnClick={handleLoadClick}/>
-      <TagCollection tags={tags}/>
+      <TagSummary tags={tags}/>
       <WeeklyPlan tags={tags} setTags={setTags} planArray={planArray} setPlanArray={setPlanArray} />
       <Snackbar open={alert.open} autoHideDuration={3000} onClose={handleAlertClose}>
         <Alert onClose={handleAlertClose} severity={alert.severity}>{alert.msg}</Alert>

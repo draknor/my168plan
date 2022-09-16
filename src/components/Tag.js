@@ -1,4 +1,4 @@
-import {ListItem, ListItemButton, ListItemText, MenuItem} from "@mui/material";
+import {MenuItem} from "@mui/material";
 import * as React from "react";
 
 const Tag = (props) => {
@@ -9,18 +9,6 @@ const Tag = (props) => {
   )
 }
 export default Tag;
-
-export const TagDisplay = (props) => {
-  const tag = props.tag;
-
-  return (
-    <ListItem className={tag.colorClass}>
-      <ListItemButton >
-        <ListItemText primary={tag.name} secondary={`Count: ${tag.count}`} />
-      </ListItemButton>
-    </ListItem>
-  )
-}
 
 export const TagMenuItem = (props) => {
   const tag = props.tag;

@@ -61,6 +61,11 @@
   background-color: palevioletred;
 }
 
+.tagColor1:hover {
+  border-color: palevioletred;
+}
+
+
 .tagColor2 {
   background-color: lightgoldenrodyellow;
 }
