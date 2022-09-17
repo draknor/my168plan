@@ -2,6 +2,7 @@ import * as React from 'react';
 import Day from './Day';
 import TimeslotRowHeader from "./TimeslotRowHeader";
 import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
 
 const WeeklyPlan = (props) => {
   const plan=props.plan;
@@ -37,6 +38,9 @@ const WeeklyPlan = (props) => {
 
   return (
     <div className={"weeklyPlan"}>
+      <Typography variant="h5" gutterBottom>
+        Weekly Plan
+      </Typography>
       <Grid container spacing={0.5} columns={8}>
         <Grid item xs={1} >
           <TimeslotRowHeader

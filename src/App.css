@@ -31,6 +31,7 @@
   height: 30px;
   padding: 0;
   vertical-align: center; /* TODO - how to vertically align? */
+  overflow: hidden;
 }
 
 .rowOdd {
@@ -58,23 +59,23 @@
 }
 
 .tagColor1 {
-  background-color: #fd7f6f;
+  background-color: #beb9db;
 }
 
 .tagColor2 {
-  background-color: #7eb0d5;
-}
-
-.tagColor3 {
-  background-color: #b2e061;
-}
-
-.tagColor4 {
   background-color: #bd7ebe;
 }
 
+.tagColor3 {
+  background-color: #7eb0d5;
+}
+
+.tagColor4 {
+  background-color: #8bd3c7;
+}
+
 .tagColor5 {
-  background-color: #ffb55a;
+  background-color: #b2e061;
 }
 
 .tagColor6 {
@@ -82,7 +83,7 @@
 }
 
 .tagColor7 {
-  background-color: #beb9db;
+  background-color: #ffb55a;
 }
 
 .tagColor8 {
@@ -90,7 +91,7 @@
 }
 
 .tagColor9 {
-  background-color: #8bd3c7;
+  background-color: #fd7f6f;
 }
 
 

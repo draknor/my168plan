@@ -13,11 +13,11 @@ import MuiAlert from "@mui/material/Alert";
 // This will eventually be replaced with a function/component to retrieve the tags from a user/data store
 const ResetTags = () => {
   return [
-    { id: 1, name: "Sleep", count: 0, colorClass: 'tagColor1' },
-    { id: 2, name: "Eat", count: 0, colorClass: 'tagColor2' },
-    { id: 3, name: "Family Time", count: 0, colorClass: 'tagColor3' },
-    { id: 4, name: "Work", count: 0, colorClass: 'tagColor4' },
-    { id: 5, name: "Recreation", count: 0, colorClass: 'tagColor5' },
+    { id: 1, name: "Sleep", count: 0, cssClass: 'tagColor1' },
+    { id: 2, name: "Eat", count: 0, cssClass: 'tagColor2' },
+    { id: 3, name: "Family Time", count: 0, cssClass: 'tagColor3' },
+    { id: 4, name: "Work", count: 0, cssClass: 'tagColor6' },
+    { id: 5, name: "Recreation", count: 0, cssClass: 'tagColor5' },
   ];
 }
 
@@ -64,15 +64,15 @@ const App = () => {
   const [alert, setAlert] = React.useState({open: false});
 
   const colorCollection = [
-    {id: 1, name: 'Red', cssClass: 'tagColor1'},
-    {id: 2, name: 'Blue', cssClass: 'tagColor2'},
-    {id: 3, name: 'Green', cssClass: 'tagColor3'},
-    {id: 4, name: 'Purple', cssClass: 'tagColor4'},
-    {id: 5, name: 'Orange', cssClass: 'tagColor5'},
+    {id: 1, name: 'Lavender', cssClass: 'tagColor1'},
+    {id: 2, name: 'Purple', cssClass: 'tagColor2'},
+    {id: 3, name: 'Blue', cssClass: 'tagColor3'},
+    {id: 4, name: 'Aqua', cssClass: 'tagColor4'},
+    {id: 5, name: 'Green', cssClass: 'tagColor5'},
     {id: 6, name: 'Yellow', cssClass: 'tagColor6'},
-    {id: 7, name: 'Lavender', cssClass: 'tagColor7'},
+    {id: 7, name: 'Orange', cssClass: 'tagColor7'},
     {id: 8, name: 'Pink', cssClass: 'tagColor8'},
-    {id: 9, name: 'Aqua', cssClass: 'tagColor9'},
+    {id: 9, name: 'Red', cssClass: 'tagColor9'},
 
   ]
 
@@ -115,6 +115,7 @@ const App = () => {
           tagStats={tagStats}
           colors={colorCollection}
       />
+      <br />
       <WeeklyPlan
           tags={tags}
           tagStats={tagStats}

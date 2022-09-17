@@ -30,7 +30,7 @@ const TagMenu = (props) => {
   };
 
   return (
-    <div className={ selectedTagId ? tags.find(tag => tag.id === selectedTagId).colorClass : "tagColorNone"  }>
+    <div className={ selectedTagId ? tags.find(tag => tag.id === selectedTagId).cssClass : "tagColorNone"  }>
       <Button
         id={`basic-button-${id}`}
         aria-controls={open ? 'basic-menu' : undefined }
