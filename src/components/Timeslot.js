@@ -1,22 +1,23 @@
 import TagMenu from "./TagMenu";
 
 const Timeslot = (props) => {
-  const planArray = props.planArray;
+  const plan = props.plan;
   const weekday = props.weekday;
   const timeslotIndex = props.timeslotIndex;
   const parentOnClick = props.onClick;
   const tags = props.tags;
-  const selectedTag=planArray[weekday][timeslotIndex];
+  const selectedTagId=plan[weekday][timeslotIndex];
 
-  const handleClick = (event, newTag, oldTag) => {
-    parentOnClick(event, newTag, oldTag, timeslotIndex, weekday);
+  const handleClick = (event, newTagId, oldTagId) => {
+    //console.log("Timeslot.handleClick");
+    parentOnClick(event, newTagId, oldTagId, timeslotIndex, weekday);
   }
 
   return (
     <div className={"timeslot " + (timeslotIndex % 2 ? 'rowOdd' : 'rowEven')  }>
       <TagMenu
         tags={tags}
-        selectedTag={selectedTag}
+        selectedTagId={selectedTagId}
         id={`(${weekday},${timeslotIndex})`}
         onClick={handleClick}/>
     </div>

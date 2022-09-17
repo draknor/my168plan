@@ -58,29 +58,41 @@
 }
 
 .tagColor1 {
-  background-color: palevioletred;
+  background-color: #fd7f6f;
 }
-
-.tagColor1:hover {
-  border-color: palevioletred;
-}
-
 
 .tagColor2 {
-  background-color: lightgoldenrodyellow;
+  background-color: #7eb0d5;
 }
 
 .tagColor3 {
-  background-color: palegreen;
+  background-color: #b2e061;
 }
 
 .tagColor4 {
-  background-color: lightskyblue;
+  background-color: #bd7ebe;
 }
 
 .tagColor5 {
-  background-color: mediumpurple;
+  background-color: #ffb55a;
 }
+
+.tagColor6 {
+  background-color: #ffee65;
+}
+
+.tagColor7 {
+  background-color: #beb9db;
+}
+
+.tagColor8 {
+  background-color: #fdcce5;
+}
+
+.tagColor9 {
+  background-color: #8bd3c7;
+}
+
 
 .tagColorNone {
   background-color: transparent;

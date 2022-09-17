@@ -5,20 +5,22 @@ import {TagMenuItem} from "./Tag";
 
 const TagMenu = (props) => {
   const tags = props.tags;
-  const selectedTag=props.selectedTag
+  const selectedTagId=props.selectedTagId
   const timeslotOnClick = props.onClick;
   const id=props.id;
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
   const handleTimeslotClick = (event) => {
+    //console.log("handleTimeslotClick");
     setAnchorEl(event.currentTarget);
   };
 
-  const handleMenuItemClick = (event, newTag) => {
-    if (newTag && newTag !== selectedTag) {
-      const oldTag = selectedTag || {};
-      timeslotOnClick(event, newTag, oldTag);
+  const handleMenuItemClick = (event, newTagId) => {
+    //console.log("handleMenuItemClick");
+    if (newTagId && newTagId !== selectedTagId) {
+      const oldTagId = selectedTagId || {};
+      timeslotOnClick(event, newTagId, oldTagId);
     }
     setAnchorEl(null);
   }
@@ -28,7 +30,7 @@ const TagMenu = (props) => {
   };
 
   return (
-    <div className={selectedTag ? selectedTag.colorClass : "tagColorNone"}>
+    <div className={ selectedTagId ? tags.find(tag => tag.id === selectedTagId).colorClass : "tagColorNone"  }>
       <Button
         id={`basic-button-${id}`}
         aria-controls={open ? 'basic-menu' : undefined }
@@ -37,7 +39,7 @@ const TagMenu = (props) => {
         onClick={handleTimeslotClick}
         endIcon={<KeyboardArrowDown />}
       >
-        {selectedTag ? selectedTag.name : '(blank)'}
+        { selectedTagId ? tags.find(tag => tag.id === selectedTagId).name : '(blank)' }
       </Button>
       <Menu
         id={`basic-menu-${id}`}
@@ -61,16 +63,13 @@ const TagMenu = (props) => {
           <TagMenuItem
             key={tag.id}
             tag={tag}
-            selected={tag === selectedTag}
-            onClick={(event) => handleMenuItemClick(event, tag)}
+            selected={tag.id === selectedTagId}
+            onClick={(event) => handleMenuItemClick(event, tag.id)}
           />
         ))}
       </Menu>
     </div>
   )
-
-
-
 
 }
 

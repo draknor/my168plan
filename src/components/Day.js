@@ -3,9 +3,9 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 
 const Day = (props) => {
-  const planArray = props.planArray
+  const plan = props.plan
   const weekday = props.weekday;
-  const timeslots = planArray[weekday];
+  const timeslots = plan[weekday];
   const tags = props.tags;
   const handleClick = props.onClick;
 
@@ -20,7 +20,7 @@ const Day = (props) => {
         return (
           <Grid item xs={1} key={num}>
             <Timeslot
-              planArray={planArray}
+              plan={plan}
               weekday={weekday}
               timeslotIndex={num}
               tags={tags}

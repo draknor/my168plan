@@ -4,33 +4,34 @@ import TimeslotRowHeader from "./TimeslotRowHeader";
 import Grid from "@mui/material/Grid";
 
 const WeeklyPlan = (props) => {
-  const planArray=props.planArray;
-  const setPlanArray=props.setPlanArray;
+  const plan=props.plan;
+  const setPlan=props.setPlan;
   const tags=props.tags;
-  const setTags = props.setTags;
+  const tagStats=props.tagStats;
+  const setTagStats = props.setTagStats;
 
-  const handleClick = (e, newTag, oldTag, timeslotIndex, weekday) => {
-    // console.log(`WeeklyPlan.handleClick[e.target] = ${e.target}`);
+  const handleClick = (e, newTagId, oldTagId, timeslotIndex, weekday) => {
+    //console.log(`WeeklyPlan.handleClick[e.target], ${e.target}`);
     // console.log(`WeeklyPlan.handleClick[weekday,timeslotIndex]=(${weekday},${timeslotIndex})`);
     // console.log('WeeklyPlan.handleClick[newTag]', newTag);
     //console.log('WeeklyPlan.handleClick[oldTag]', oldTag);
 
-    if ( (newTag ? newTag.id : null) !== (oldTag ? oldTag.id : null) ) {
+    if ( (newTagId ? newTagId : null) !== (oldTagId ? oldTagId : null) ) {
       // Update the plan
-      let newPlan = planArray.slice();
-      newPlan[weekday][timeslotIndex] = newTag;
-      setPlanArray(newPlan);
+      let newPlan = plan.slice();
+      newPlan[weekday][timeslotIndex] = newTagId;
+      setPlan(newPlan);
 
       // Then update the tag counts
-      const updatedTags = tags.map(tag => {
-        // console.log('map(tag)-before',tag);
-        if (oldTag && tag.id === oldTag.id) { return {...tag, count: --tag.count}; }
-        if (newTag && tag.id === newTag.id) { return {...tag, count: ++tag.count}; }
-        // console.log('map(tag)-after',tag);
-        return tag;
+      const updatedTagStats = tagStats.map(tagStat => {
+        // console.log('map(tag)-before',tagStat);
+        if (oldTagId && tagStat.id === oldTagId) { return {...tagStat, count: --tagStat.count}; }
+        if (newTagId && tagStat.id === newTagId) { return {...tagStat, count: ++tagStat.count}; }
+        // console.log('map(tag)-after',tagStat);
+        return tagStat;
       })
-      // console.log('WeeklyPlan.handleClick[updatedTags]', updatedTags);
-      setTags(updatedTags);
+      //console.log('WeeklyPlan.handleClick[updatedTags]', updatedTags);
+      setTagStats(updatedTagStats);
     }
   }
 
@@ -39,14 +40,14 @@ const WeeklyPlan = (props) => {
       <Grid container spacing={0.5} columns={8}>
         <Grid item xs={1} >
           <TimeslotRowHeader
-            timeslots={planArray[0]}
+            timeslots={plan[0]}
           />
         </Grid>
-        { planArray.map((e, weekday) => {
+        { plan.map((e, weekday) => {
           return (
             <Grid item xs={1} key={weekday}>
               <Day
-                planArray={planArray}
+                plan={plan}
                 weekday={weekday}
                 tags={tags}
                 onClick={handleClick}
