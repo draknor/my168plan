@@ -5,62 +5,17 @@ import Footer from './components/Footer';
 import TagSummary from "./components/TagSummary";
 import WeeklyPlan from "./components/WeeklyPlan";
 import Header from "./components/Header";
-import {getTimeslots} from "./components/Timeslot";
-import {useCookies} from "react-cookie";
+//import {useCookies} from "react-cookie";
 import {Snackbar} from "@mui/material";
 import MuiAlert from "@mui/material/Alert";
-
-// This will eventually be replaced with a function/component to retrieve the tags from a user/data store
-const ResetTags = () => {
-  return [
-    { id: 1, name: "Sleep", count: 0, cssClass: 'tagColor1' },
-    { id: 2, name: "Eat", count: 0, cssClass: 'tagColor2' },
-    { id: 3, name: "Family Time", count: 0, cssClass: 'tagColor3' },
-    { id: 4, name: "Work", count: 0, cssClass: 'tagColor6' },
-    { id: 5, name: "Recreation", count: 0, cssClass: 'tagColor5' },
-  ];
-}
-
-// This will eventually be replaced with a function/component to retrieve the plan from a user/data store
-const ResetPlan = () => {
-  let plan = Array(7);
-  for (let weekday=0; weekday<plan.length; weekday++) {
-    let timeslots = getTimeslots(weekday);
-    plan[weekday] = Array(timeslots.length);
-    timeslots.map((timeslot, index) => {
-      plan[weekday][index] = null
-      return null;
-    })
-  }
-
-  return plan;
-}
-
-const ResetTagStats = (tags, plan) => {
-  let tagStats = tags.map(tag => {
-    return {
-      id: tag.id,
-      count: 0
-    };
-  })
-  let tagIndex = {}
-  tagStats.forEach((tag, index) => { tagIndex[tag.id] = index})
-
-  for (let weekday=0; weekday<plan.length; weekday++) {
-    for (let timeslot=0; timeslot<plan[weekday].length; timeslot++) {
-      let tagId = plan[weekday][timeslot];
-      if (tagId && tagIndex[tagId]) { ++tagStats[tagIndex[tagId]].count }
-    }
-  }
-  return tagStats;
-
-}
+import {ResetPlan, ResetTags, ResetTagStats} from "./operations/reset";
+import {SavePlan, LoadPlan} from "./operations/database";
 
 const App = () => {
   const [tags, setTags] = React.useState(ResetTags());
   const [plan, setPlan] = React.useState(ResetPlan());
   const [tagStats, setTagStats] = React.useState(ResetTagStats(tags, plan));
-  const [cookies, setCookie] = useCookies(['plan','tags'])
+  //const [cookies, setCookie] = useCookies(['plan','tags'])
   const [alert, setAlert] = React.useState({open: false});
 
   const colorCollection = [
@@ -87,21 +42,32 @@ const App = () => {
     setAlert({open: false});
   }
 
-  const handleSaveClick = () => {
-    setCookie('tags',tags);
-    setCookie('plan',plan);
-    setAlert({open: true, severity: 'success', msg:'Saved!'})
-  }
-
   const handleClearClick = () => {
     setPlan(ResetPlan());
     setTags(ResetTags());
-    setAlert({open: true, severity: 'warning', msg:'Deleted!'})
+    setAlert({open: true, severity: 'warning', msg:'Cleared!'})
+  }
+
+  const handleSaveClick = () => {
+    let newPlanId = SavePlan('', {planArray: plan, tagArray: tags})
+
+    if (newPlanId !=='') {
+      //setPlanId(newPlanId);
+      setAlert({open: true, severity: 'success', msg:`Saved plan with id ${newPlanId}`})
+    } else {
+      setAlert({open: true, severity: 'error', msg:'Save failed!'})
+    }
+
   }
 
   const handleLoadClick = () => {
-    if (cookies.tags) { setTags(cookies.tags); }
-    if (cookies.plan) { setPlan(cookies.plan); }
+    // TODO - display modal to prompt for planId
+    // Then attempt to load
+
+    let planObj = LoadPlan('');
+    setPlan(planObj.planArray);
+    setTags(planObj.tagArray);
+
     setAlert({open: true, severity: 'success', msg:'Loaded!'})
   }
 
