@@ -45,6 +45,7 @@ const App = () => {
   const handleClearClick = () => {
     setPlan(ResetPlan());
     setTags(ResetTags());
+    setTagStats(ResetTagStats(tags, plan));
     setAlert({open: true, severity: 'warning', msg:'Cleared!'})
   }
 

@@ -2,11 +2,11 @@ import {getTimeslots} from "../components/Timeslot";
 
 const ResetTags = () => {
   return [
-    { id: 1, name: "Sleep", count: 0, cssClass: 'tagColor1' },
-    { id: 2, name: "Eat", count: 0, cssClass: 'tagColor2' },
-    { id: 3, name: "Family Time", count: 0, cssClass: 'tagColor3' },
-    { id: 4, name: "Work", count: 0, cssClass: 'tagColor6' },
-    { id: 5, name: "Recreation", count: 0, cssClass: 'tagColor5' },
+    { id: 1, name: "Sleep", cssClass: 'tagColor1' },
+    { id: 2, name: "Eat", cssClass: 'tagColor2' },
+    { id: 3, name: "Family Time", cssClass: 'tagColor3' },
+    { id: 4, name: "Work", cssClass: 'tagColor6' },
+    { id: 5, name: "Recreation", cssClass: 'tagColor5' },
   ];
 }
 

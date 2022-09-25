@@ -142,7 +142,6 @@ const TagSummary = (props) => {
                   return({
                     id: tag.id,
                     name: tag.name,
-                    //color: colors.find(color => color.cssClass === tag.colorClass).name,
                     colorIdx: colors.findIndex(color => color.cssClass === tag.cssClass),
                     cssClass:tag.cssClass,
                     hours: tagStats.find(tagStat => tagStat.id === tag.id).count
