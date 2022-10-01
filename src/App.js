@@ -8,13 +8,15 @@ import Header from "./components/Header";
 //import {useCookies} from "react-cookie";
 import {Snackbar} from "@mui/material";
 import MuiAlert from "@mui/material/Alert";
-import {ResetPlan, ResetTags, ResetTagStats} from "./operations/reset";
+import {ResetPlan, ResetTags, RecalcTagStats} from "./operations/reset";
 import {SavePlan, LoadPlan} from "./operations/database";
+import {useEffect} from "react";
 
 const App = () => {
   const [tags, setTags] = React.useState(ResetTags());
   const [plan, setPlan] = React.useState(ResetPlan());
-  const [tagStats, setTagStats] = React.useState(ResetTagStats(tags, plan));
+  const [tagStats, setTagStats] = React.useState(RecalcTagStats(tags, plan));
+  const [toggleRecalc, setRecalc] = React.useState(true);
   //const [cookies, setCookie] = useCookies(['plan','tags'])
   const [alert, setAlert] = React.useState({open: false});
 
@@ -42,18 +44,25 @@ const App = () => {
     setAlert({open: false});
   }
 
+  useEffect(() => {
+    setTagStats(RecalcTagStats(tags, plan));
+    // We only want to call this on-demand, not every time tags or plan changes, so ignore this eslint warning
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [toggleRecalc]);
+
   const handleClearClick = () => {
     setPlan(ResetPlan());
     setTags(ResetTags());
-    setTagStats(ResetTagStats(tags, plan));
+    setRecalc(!toggleRecalc);
     setAlert({open: true, severity: 'warning', msg:'Cleared!'})
   }
 
-  const handleSaveClick = () => {
-    let newPlanId = SavePlan('', {planArray: plan, tagArray: tags})
+  const handleSaveClick = async () => {
+    //console.log("handleSaveClick"); // DEBUG
+    let newPlanId = await SavePlan('', {planArray: plan, tagArray: tags})
+    //console.log("handleSaveClick.newPlanId",newPlanId);
 
     if (newPlanId !=='') {
-      //setPlanId(newPlanId);
       setAlert({open: true, severity: 'success', msg:`Saved plan with id ${newPlanId}`})
     } else {
       setAlert({open: true, severity: 'error', msg:'Save failed!'})
@@ -61,15 +70,20 @@ const App = () => {
 
   }
 
-  const handleLoadClick = () => {
-    // TODO - display modal to prompt for planId
-    // Then attempt to load
+  const handleLoadClick = async (planId) => {
+    //console.log("App > handleLoadClick", planId); // DEBUG
 
-    let planObj = LoadPlan('');
-    setPlan(planObj.planArray);
-    setTags(planObj.tagArray);
-
-    setAlert({open: true, severity: 'success', msg:'Loaded!'})
+    let planObj = await LoadPlan(planId);
+    //console.log("App > handleLoadClick > Post-LoadPlan", planObj); // DEBUG
+    if (Object.keys(planObj).length > 0) {
+      setPlan(planObj.planArray);
+      setTags(planObj.tagArray);
+      setRecalc(!toggleRecalc);
+      setAlert({open: true, severity: 'success', msg:'Loaded!'})
+    }
+    else {
+      setAlert({open: true, severity: 'error', msg:`Plan ID ${planId} not found`})
+    }
   }
 
 

@@ -25,7 +25,7 @@ const ResetPlan = () => {
   return plan;
 }
 
-const ResetTagStats = (tags, plan) => {
+const RecalcTagStats = (tags, plan) => {
   let tagStats = tags.map(tag => {
     return {
       id: tag.id,
@@ -45,4 +45,4 @@ const ResetTagStats = (tags, plan) => {
 
 }
 
-export {ResetPlan, ResetTags, ResetTagStats}
+export {ResetPlan, ResetTags, RecalcTagStats}

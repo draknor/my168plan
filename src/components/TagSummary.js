@@ -137,7 +137,6 @@ const TagSummary = (props) => {
     }
   ]
 
-
   const rows = tags.map((tag) => {
                   return({
                     id: tag.id,
