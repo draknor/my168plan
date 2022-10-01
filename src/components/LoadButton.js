@@ -9,7 +9,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import {Backup} from "@mui/icons-material";
 
 
-export default function LoadDialog(props) {
+export default function LoadButton(props) {
   const [open, setOpen] = React.useState(false);
   const processLoad = props.onClick
   let tempPlanId = '';

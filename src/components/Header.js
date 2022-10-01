@@ -1,10 +1,9 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import {Button} from "@mui/material";
-import {Save, Delete} from "@mui/icons-material";
 import Stack from "@mui/material/Stack";
-import LoadDialog from "./LoadDialog";
-
+import LoadButton from "./LoadButton";
+import SaveButton from "./SaveButton";
+import ClearButton from "./ClearButton";
 
 const Header = (props) => {
   const saveOnClick = props.saveOnClick;
@@ -16,9 +15,9 @@ const Header = (props) => {
           <Typography variant="h2" gutterBottom>
             My168 Planner
           </Typography>
-          <Button variant={"contained"} color={"success"} startIcon={<Save />} onClick={saveOnClick}>Save</Button>
-          <LoadDialog onClick={loadOnClick} />
-          <Button variant={"contained"} color={"error"} startIcon={<Delete />} onClick={clearOnClick}>Clear</Button>
+          <SaveButton onClick={saveOnClick} />
+          <LoadButton onClick={loadOnClick} />
+          <ClearButton onClick={clearOnClick} />
         </Stack>
     </Box>
   );
