@@ -38,7 +38,7 @@ const WeeklyPlan = (props) => {
 
   return (
     <div className={"weeklyPlan"}>
-      <Typography variant="h5" gutterBottom>
+      <Typography variant="h4" gutterBottom>
         Weekly Plan
       </Typography>
       <Grid container spacing={0.5} columns={8}>

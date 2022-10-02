@@ -5,8 +5,8 @@ export default function ClearButton(props) {
   const handleClick=props.onClick;
   return (
     <div>
-      <Button variant="outlined" color={"error"} startIcon={<Delete />} onClick={handleClick}>
-        Clear
+      <Button sx={{width: 150}} variant="outlined" color={"error"} startIcon={<Delete />} onClick={handleClick}>
+        Reset
       </Button>
     </div>
   );

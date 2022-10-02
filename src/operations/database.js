@@ -6,7 +6,7 @@ const idChars ='ABCDEFGHJKMNPQRSTUVWXYZ23456789'; // Eliminate look-alike chars
 const idLength=8;
 
 async function SavePlan(planId, plan) {
-  //console.log("SavePlan", planId); //DEBUG
+  //console.log("SavePlan.planId", planId); //DEBUG
   if (planId === '') { planId = await generateNewId(); }
   await set(ref(db, 'plans/' + planId), {
     planArray: plan.planArray,

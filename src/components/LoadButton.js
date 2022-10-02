@@ -34,7 +34,7 @@ export default function LoadButton(props) {
 
   return (
     <div>
-      <Button variant="outlined" color={"info"} startIcon={<Backup />} onClick={handleClickOpen}>
+      <Button sx={{width: 150}} variant="outlined" color={"info"} startIcon={<Backup />} onClick={handleClickOpen}>
         Load
       </Button>
       <Dialog open={open} onClose={handleClose}>

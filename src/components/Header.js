@@ -9,13 +9,14 @@ const Header = (props) => {
   const saveOnClick = props.saveOnClick;
   const clearOnClick = props.clearOnClick;
   const loadOnClick = props.loadOnClick;
+  const planId = props.planId;
   return (
     <Box sx={{ my: 4 }}>
         <Stack spacing={5} direction={"row"}>
           <Typography variant="h2" gutterBottom>
             My168 Planner
           </Typography>
-          <SaveButton onClick={saveOnClick} />
+          <SaveButton onClick={saveOnClick} planId={planId}/>
           <LoadButton onClick={loadOnClick} />
           <ClearButton onClick={clearOnClick} />
         </Stack>

@@ -73,7 +73,7 @@ const TagSummary = (props) => {
   const columns = [
     {
       field: 'name',
-      headerName: 'Tag Name',
+      headerName: 'Value',
       width: 150,
       editable: true
     },
@@ -87,6 +87,12 @@ const TagSummary = (props) => {
       valueSetter:  setColor
     },
     {
+      field: 'comment',
+      headerName: 'Notes',
+      flex: '1',
+      editable: true
+    },
+    {
       field: 'hours',
       headerName: 'Hours',
       type: 'number',
@@ -96,7 +102,7 @@ const TagSummary = (props) => {
       field: 'actions',
       type: 'actions',
       headerName: '',
-      width: 40,
+      width: 100,
       cellClassName: 'actions',
       getActions: ({id}) => {
         const isInEditMode = rowModesModel[id]?.mode === GridRowModes.Edit;
@@ -143,6 +149,7 @@ const TagSummary = (props) => {
                     name: tag.name,
                     colorIdx: colors.findIndex(color => color.cssClass === tag.cssClass),
                     cssClass:tag.cssClass,
+                    comment:tag.comment,
                     hours: tagStats.find(tagStat => tagStat.id === tag.id).count
                   })
                 })
@@ -175,9 +182,9 @@ const TagSummary = (props) => {
   }
 
   return (
-    <Box sx={{ width: 350, bgcolor: 'background.paper'}}>
-      <Typography variant="h5" gutterBottom>
-        Tag Summary
+    <Box sx={{ bgcolor: 'background.paper'}}>
+      <Typography variant="h4" gutterBottom>
+        Value Summary
       </Typography>
       <div>
         <DataGrid
@@ -191,7 +198,7 @@ const TagSummary = (props) => {
           processRowUpdate={processRowUpdate}
           onProcessRowUpdateError={handleProcessRowUpdateError}
           rowSpacingType="border"
-          sx={{ '& .MuiDataGrid-row:hover': { borderColor: 'white', borderStyle: 'solid' } }}
+          sx={{ '& .MuiDataGrid-row:hover': { borderColor: 'silver', borderStyle: 'solid', borderWidth: '1px'} }}
           editMode="row"
           rowModesModel={rowModesModel}
           onRowEditStart={handleRowEditStart}
